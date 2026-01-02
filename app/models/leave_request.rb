@@ -2,6 +2,26 @@ class LeaveRequest < ApplicationRecord
   belongs_to :employee
   belongs_to :leave_type
 
+  
+  # Status-based scopes
+  scope :pending,   -> { where(status: 'pending') }
+  scope :approved,  -> { where(status: 'approved') }
+  scope :rejected,  -> { where(status: 'rejected') }
+  scope :cancelled, -> { where(status: 'cancelled') }
+
+  # Employee-based
+  scope :for_employee, ->(employee_id) { where(employee_id: employee_id) }
+
+  # Leave type-based
+  scope :for_leave_type, ->(leave_type_id) { where(leave_type_id: leave_type_id) }
+
+  # Date-based
+  scope :starting_from, ->(date) { where("start_date >= ?", date) }
+  scope :ending_until,  ->(date) { where("end_date <= ?", date) }
+
+  # Recent leaves
+  scope :recent, -> { order(created_at: :desc) }
+
   validates :start_date, :end_date, :status, presence: true
 
   validates :status,
