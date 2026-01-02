@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_02_121027) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_02_165135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,11 +23,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_121027) do
 
   create_table "employees", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.bigint "department_id"
     t.string "email"
     t.date "join_date"
     t.string "name"
     t.string "status"
     t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_employees_on_department_id"
   end
 
   create_table "leave_balances", force: :cascade do |t|
@@ -35,15 +37,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_121027) do
     t.integer "Total_Days"
     t.integer "Used_Days"
     t.datetime "created_at", null: false
+    t.bigint "employee_id", null: false
+    t.bigint "leave_type_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_leave_balances_on_employee_id"
+    t.index ["leave_type_id"], name: "index_leave_balances_on_leave_type_id"
   end
 
   create_table "leave_requests", force: :cascade do |t|
     t.date "End_Date"
     t.date "Start_Date"
     t.datetime "created_at", null: false
+    t.bigint "employee_id", null: false
+    t.bigint "leave_type_id", null: false
     t.string "status"
     t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_leave_requests_on_employee_id"
+    t.index ["leave_type_id"], name: "index_leave_requests_on_leave_type_id"
   end
 
   create_table "leave_types", force: :cascade do |t|
@@ -52,4 +62,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_121027) do
     t.string "name"
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "employees", "departments"
+  add_foreign_key "leave_balances", "employees"
+  add_foreign_key "leave_balances", "leave_types"
+  add_foreign_key "leave_requests", "employees"
+  add_foreign_key "leave_requests", "leave_types"
 end
