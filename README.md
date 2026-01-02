@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# Leave_management_system
+Leave Management System – A Ruby-based app managing employee leave requests
+>>>>>>> 151b2385fc01422706ea5b1afff120d6f795295e
