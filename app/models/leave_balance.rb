@@ -10,6 +10,8 @@ class LeaveBalance < ApplicationRecord
 
   validate :remaining_days_correct
 
+  before_validation :set_remaining_days
+
   private
 
   def remaining_days_correct
