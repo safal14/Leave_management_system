@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Total_Days: 1
+  Used_Days: 1
+  Remaining_Days: 1
+
+two:
+  Total_Days: 1
+  Used_Days: 1
+  Remaining_Days: 1
