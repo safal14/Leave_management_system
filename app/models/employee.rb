@@ -26,6 +26,6 @@ class Employee < ApplicationRecord
 
   validates :join_date, presence: true
 
-  validates :status, presence: true,
+  validates :status, presence: true
             
 end
