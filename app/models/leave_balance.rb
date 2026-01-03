@@ -27,9 +27,13 @@ class LeaveBalance < ApplicationRecord
 
   def remaining_days_correct
     return if total_days.blank? || used_days.blank? || remaining_days.blank?
-
     if remaining_days != total_days - used_days
       errors.add(:remaining_days, "must equal total_days - used_days")
     end
+  end
+
+  def set_remaining_days
+    return if total_days.blank? || used_days.blank?
+    self.remaining_days = total_days - used_days
   end
 end

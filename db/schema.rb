@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_02_165135) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_02_170849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -33,13 +33,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_165135) do
   end
 
   create_table "leave_balances", force: :cascade do |t|
-    t.integer "Remaining_Days"
-    t.integer "Total_Days"
-    t.integer "Used_Days"
     t.datetime "created_at", null: false
     t.bigint "employee_id", null: false
     t.bigint "leave_type_id", null: false
+    t.integer "remaining_days"
+    t.integer "total_days"
     t.datetime "updated_at", null: false
+    t.integer "used_days"
     t.index ["employee_id"], name: "index_leave_balances_on_employee_id"
     t.index ["leave_type_id"], name: "index_leave_balances_on_leave_type_id"
   end
