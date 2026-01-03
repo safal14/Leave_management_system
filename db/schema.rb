@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_02_170849) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_03_054120) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,11 +45,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_170849) do
   end
 
   create_table "leave_requests", force: :cascade do |t|
-    t.date "End_Date"
-    t.date "Start_Date"
     t.datetime "created_at", null: false
     t.bigint "employee_id", null: false
+    t.date "end_date"
     t.bigint "leave_type_id", null: false
+    t.date "start_date"
     t.string "status"
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_leave_requests_on_employee_id"
